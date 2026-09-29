@@ -17,6 +17,9 @@ Design notes:
 - The assistant should run this (or read the files directly) at the start of
   every session rather than relying on in-chat memory, which does not persist.
 - New conversations should treat this repo as the source of truth.
+- At the END of every session, the assistant must append that conversation's
+  transcript to conversation-history.txt and push it back to this repo so the
+  next session can pick up where this one left off.
 """
 
 from __future__ import annotations
@@ -57,8 +60,13 @@ def main() -> None:
     print()
     print("=== END OF CONTEXT ===")
     print("Assistant: treat the history above as prior context for this session.")
-    print("Assistant: update conversation-history.txt after each session so the")
-    print("Assistant: next conversation can pick up where this one left off.")
+    print("Assistant: at the START of every new conversation, access this GitHub")
+    print("Assistant: repo (imyourunclebuck/Grok-Test) and read conversation-history.txt")
+    print("Assistant: and grok-context-loader.py before responding to the user.")
+    print("Assistant: at the END of every session, append this conversation's")
+    print("Assistant: transcript to conversation-history.txt and push it back to")
+    print("Assistant: the repo so the next conversation can pick up where this")
+    print("Assistant: one left off.")
 
 
 if __name__ == "__main__":
